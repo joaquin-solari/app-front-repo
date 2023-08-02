@@ -1,5 +1,13 @@
 pipeline {
 
+    environment {
+         APP_NAME = "app-juaco"
+        APP_TAG = "{BUILD_NUMBER}"
+        USER_APP = "joaquinsolari"
+        PASS = "riverplate8090100"
+        GIT_REPO= "https://github.com/joaquin-solari/app-repo"
+    }
+
     agent {
        kubernetes {
             yaml '''
@@ -50,25 +58,25 @@ spec:
 
         stage('Clonar repo') {
             steps {
-                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/joaquin-solari/app-repo'
+                git branch: 'main', changelog: false, poll: false, url: "$GIT_REPO"
             }
         } 
 
         stage('Buildear imagen') {
             steps {
-                sh "docker build -t joaquinsolari/app-juaco:${BUILD_NUMBER} ." 
+                sh "docker build -t $USER_APP/$APP_NAME:$APP_TAG ." 
             }
         }
 
         stage('docker login') {
             steps {
-                sh "docker login -u joaquinsolari -p riverplate8090100"
+                sh "docker login -u $USER_APP -p $PASS"
             }
         }
 
         stage('docker push') {
             steps {
-                sh "docker push joaquinsolari/app-juaco:${BUILD_NUMBER} "
+                sh "docker push $USER_APP/$APP_NAME:$APP_TAG "
             }
         } 
     } 
