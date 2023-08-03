@@ -99,8 +99,8 @@ spec:
         stage ('Pushear cambios'){
           steps{
              sh "git config --global user.email 'joaquin.solari@sendati.com'" 
-             sh "git config --global user.name 'Joaquin Solari'"
-             
+             sh "git config --global user.name 'joaquin-solari'"
+
              sh "git branch --set-upstream-to=origin/main main"
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment'"
