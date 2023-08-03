@@ -103,7 +103,7 @@ spec:
 
               sh "git add ."
               sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment'"
-              sh "git push"
+              sh "git push --set-upstream origin main"
           }
         }
 
