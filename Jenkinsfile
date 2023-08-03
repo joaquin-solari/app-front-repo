@@ -106,7 +106,7 @@ spec:
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment'"
              withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) 
              {
-             sh "git push --force https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/app-repo.git"
+             sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
              }
              
           }
