@@ -5,8 +5,8 @@ pipeline {
         APP_TAG_ANT = "${BUILD_NUMBER} - 1"
         USER_APP = "joaquinsolari"
         PASS = "docker1608"
-        GIT_REPO_APP= "https://github.com/joaquin-solari/app-repo.git"
-        GIT_REPO_INFRA= "https://github.com/joaquin-solari/infra-repo.git"
+        GIT_REPO_APP= "https://github.com/joaquin-solari/app-repo"
+        GIT_REPO_INFRA= "https://github.com/joaquin-solari/infra-repo"
     }
 
     agent {
@@ -89,8 +89,9 @@ spec:
 
         stage ('Modificar Dockerfile'){
             steps{
-                sh "cd mi-app"
+              dir(mi-app){
                 sh"sed -i 's|joaquinsolari/app-juaco:$APP_TAG_ANT|joaquinsolari/app-juaco:${BUILD_NUMBER}|g' deploy-tomi.yaml"
+              }
             }
         }
 
