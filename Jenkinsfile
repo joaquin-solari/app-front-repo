@@ -87,9 +87,9 @@ spec:
             }
         } 
 
-        stage ('Modificar Dockerfile'){
+        stage ('Modificar Deploy'){
             steps{
-              dir(mi-app){
+              dir("mi-app"){
                 sh"sed -i 's|joaquinsolari/app-juaco:$APP_TAG_ANT|joaquinsolari/app-juaco:${BUILD_NUMBER}|g' deploy-tomi.yaml"
               }
             }
