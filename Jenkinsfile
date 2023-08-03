@@ -104,7 +104,11 @@ spec:
              sh "git branch --set-upstream-to=origin/main main"
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment'"
-             sh "git push"
+             withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) 
+             {
+             sh "git push https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/app-repo.git"
+             }
+             
           }
         }
 
