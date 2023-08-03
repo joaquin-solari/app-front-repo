@@ -2,7 +2,7 @@ pipeline {
 
     environment {
          APP_NAME = "app-juaco"
-        APP_TAG_ANT = "${BUILD_NUMBER - 1}"
+        APP_TAG_ANT = env.BUILD_NUMBER.toInteger() - 1
         USER_APP = "joaquinsolari"
         PASS = "docker1608"
         GIT_REPO_APP= "https://github.com/joaquin-solari/app-repo"
