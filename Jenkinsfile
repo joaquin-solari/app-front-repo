@@ -83,7 +83,10 @@ spec:
 
         stage('Clonar repo Infra') {
             steps {
-                git branch: 'main', changelog: false, poll: false, credentialsId: 'jenkins', url: "$GIT_REPO_INFRA"
+              withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) 
+             {
+                git branch: 'main', changelog: false, poll: false, url: "$GIT_REPO_INFRA"
+             }
             }
         } 
 
