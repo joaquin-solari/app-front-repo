@@ -2,7 +2,7 @@ pipeline {
 
     environment {
          APP_NAME = "app-juaco"
-        APP_TAG_ANT = ${BUILD_NUMBER - 1}
+
         USER_APP = "joaquinsolari"
         PASS = "docker1608"
         GIT_REPO_APP= "https://github.com/joaquin-solari/app-repo"
@@ -90,7 +90,7 @@ spec:
         stage ('Modificar Deploy'){
             steps{
                dir("mi-app") {
-                sh"sed -i 's|joaquinsolari/app-juaco:$APP_TAG_ANT|joaquinsolari/app-juaco:${BUILD_NUMBER}|g' deploy-tomi.yaml"
+                sh"sed -i 's|joaquinsolari/app-juaco:.*|joaquinsolari/app-juaco:${BUILD_NUMBER}|g' deploy-tomi.yaml"
                 }
             
             }
