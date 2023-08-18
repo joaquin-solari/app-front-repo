@@ -86,7 +86,8 @@ spec:
                 git branch: 'main', changelog: false, poll: false, credentialsId: 'jenkins', url: "$GIT_REPO_INFRA"
             }
         } 
-        tage ('Modificar Values'){
+        
+        stage ('Modificar Values'){
             steps{
                dir("mi-app") {
                 sh"sed -i 's|tag:.*|tag:${BUILD_NUMBER}|g' values.yaml"
