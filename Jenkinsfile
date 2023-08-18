@@ -86,15 +86,24 @@ spec:
                 git branch: 'main', changelog: false, poll: false, credentialsId: 'jenkins', url: "$GIT_REPO_INFRA"
             }
         } 
+        tage ('Modificar Values'){
+            steps{
+               dir("mi-app") {
+                sh"sed -i 's|tag:.*|tag:${BUILD_NUMBER}|g' values.yaml"
+                }
+            
+            }
+        } 
 
-        stage ('Modificar Deploy'){
+
+        /* stage ('Modificar Deploy'){
             steps{
                dir("mi-app") {
                 sh"sed -i 's|joaquinsolari/app-juaco:.*|joaquinsolari/app-juaco:${BUILD_NUMBER}|g' deploy-tomi.yaml"
                 }
             
             }
-        }
+        } */
 
         stage ('Pushear cambios'){
           steps{
