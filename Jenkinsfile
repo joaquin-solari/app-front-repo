@@ -90,7 +90,7 @@ spec:
         stage ('Modificar Values'){
             steps{
                dir("mi-app") {
-                sh"sed -i 's|tag:.*|tag:${BUILD_NUMBER}|g' values.yaml"
+                sh"sed -i 's|tag:.*|tag: ${BUILD_NUMBER}|g' values.yaml"
                 }
             
             }
