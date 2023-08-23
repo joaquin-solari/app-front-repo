@@ -5,7 +5,7 @@ pipeline {
 
         USER_APP = "joaquinsolari"
         PASS = "docker1608"
-        GIT_REPO_APP= "https://github.com/joaquin-solari/app-repo"
+        GIT_REPO_APP= "https://github.com/joaquin-solari/app-front-repo"
         GIT_REPO_INFRA= "https://github.com/joaquin-solari/infra-repo"
     }
 
@@ -89,7 +89,7 @@ spec:
         
         stage ('Modificar Value Dev'){
             steps{
-               dir("frontend/mi-app-frontend/environments") {
+               dir("frontend/environments") {
                 sh"sed -i 's|tag:.*|tag: ${BUILD_NUMBER}|g' values-dev.yaml"
                 }
             
@@ -116,7 +116,7 @@ spec:
                 expression{ currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
               }
             steps{
-               dir("frontend/mi-app-frontend/environments") {
+               dir("frontend/environments") {
                 sh"sed -i 's|tag:.*|tag: ${BUILD_NUMBER}|g' values-stage.yaml"
                 }
             
@@ -143,7 +143,7 @@ spec:
                 expression{ currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
              }
             steps{
-               dir("frontend/mi-app-frontend/environments") {
+               dir("frontend/environments") {
                 sh"sed -i 's|tag:.*|tag: ${BUILD_NUMBER}|g' values-prod.yaml"
                 }
             
