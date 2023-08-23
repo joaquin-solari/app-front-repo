@@ -89,7 +89,7 @@ spec:
         
         stage ('Modificar Value Dev'){
             steps{
-               dir("mi-app/environments") {
+               dir("frontend/mi-app-frontend/environments") {
                 sh"sed -i 's|tag:.*|tag: ${BUILD_NUMBER}|g' values-dev.yaml"
                 }
             
@@ -116,7 +116,7 @@ spec:
                 expression{ currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
               }
             steps{
-               dir("mi-app/environments") {
+               dir("frontend/mi-app-frontend/environments") {
                 sh"sed -i 's|tag:.*|tag: ${BUILD_NUMBER}|g' values-stage.yaml"
                 }
             
@@ -143,7 +143,7 @@ spec:
                 expression{ currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
              }
             steps{
-               dir("mi-app/environments") {
+               dir("frontend/mi-app-frontend/environments") {
                 sh"sed -i 's|tag:.*|tag: ${BUILD_NUMBER}|g' values-prod.yaml"
                 }
             
