@@ -87,40 +87,88 @@ spec:
             }
         } 
         
-        stage ('Modificar Values'){
+        stage ('Modificar Value Dev'){
             steps{
-               dir("mi-app") {
-                sh"sed -i 's|tag:.*|tag: ${BUILD_NUMBER}|g' values.yaml"
+               dir("mi-app/environments") {
+                sh"sed -i 's|tag:.*|tag: ${BUILD_NUMBER}|g' values-dev.yaml"
                 }
             
             }
         } 
 
-
-        /* stage ('Modificar Deploy'){
-            steps{
-               dir("mi-app") {
-                sh"sed -i 's|joaquinsolari/app-juaco:.*|joaquinsolari/app-juaco:${BUILD_NUMBER}|g' deploy-tomi.yaml"
-                }
-            
-            }
-        } */
-
-        stage ('Pushear cambios'){
+        stage ('Pushear cambios Dev'){
+          when{
+                expression{ currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
+              }
           steps{
              sh "git config --global user.email joaquin.solari@sendati.com" 
              sh "git config --global user.name joaquin-solari"
 
              sh "git branch --set-upstream-to=origin/main main"
              sh "git add ."
-             sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment'"
+             sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Dev'"
              withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) 
              {
              sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
-             }
-             
+             } 
           }
         }
+
+        stage ('Modificar Value Stage'){
+            steps{
+               dir("mi-app/environments") {
+                sh"sed -i 's|tag:.*|tag: ${BUILD_NUMBER}|g' values-stage.yaml"
+                }
+            
+            }
+        } 
+
+        stage ('Pushear cambios Stage'){
+          when{
+                expression{ currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
+              }
+          steps{
+             sh "git config --global user.email joaquin.solari@sendati.com" 
+             sh "git config --global user.name joaquin-solari"
+
+             sh "git branch --set-upstream-to=origin/main main"
+             sh "git add ."
+             sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Stage'"
+             withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) 
+             {
+             sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
+             } 
+          }
+        }
+
+        stage ('Modificar Value Prod'){
+            steps{
+               dir("mi-app/environments") {
+                sh"sed -i 's|tag:.*|tag: ${BUILD_NUMBER}|g' values-prod.yaml"
+                }
+            
+            }
+        } 
+
+        stage ('Pushear cambios Prod'){
+          when{
+                expression{ currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
+              }
+          steps{
+             sh "git config --global user.email joaquin.solari@sendati.com" 
+             sh "git config --global user.name joaquin-solari"
+
+             sh "git branch --set-upstream-to=origin/main main"
+             sh "git add ."
+             sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Prod'"
+             withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) 
+             {
+             sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
+             } 
+          }
+        }
+
+
 
     } 
 }
