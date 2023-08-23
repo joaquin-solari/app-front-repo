@@ -97,9 +97,6 @@ spec:
         } 
 
         stage ('Pushear cambios Dev'){
-          when{
-                expression{ currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
-              }
           steps{
              sh "git config --global user.email joaquin.solari@sendati.com" 
              sh "git config --global user.name joaquin-solari"
@@ -115,6 +112,9 @@ spec:
         }
 
         stage ('Modificar Value Stage'){
+         when{
+                expression{ currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
+              }
             steps{
                dir("mi-app/environments") {
                 sh"sed -i 's|tag:.*|tag: ${BUILD_NUMBER}|g' values-stage.yaml"
@@ -124,9 +124,6 @@ spec:
         } 
 
         stage ('Pushear cambios Stage'){
-          when{
-                expression{ currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
-              }
           steps{
              sh "git config --global user.email joaquin.solari@sendati.com" 
              sh "git config --global user.name joaquin-solari"
@@ -142,6 +139,9 @@ spec:
         }
 
         stage ('Modificar Value Prod'){
+         when{
+                expression{ currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
+             }
             steps{
                dir("mi-app/environments") {
                 sh"sed -i 's|tag:.*|tag: ${BUILD_NUMBER}|g' values-prod.yaml"
@@ -151,9 +151,6 @@ spec:
         } 
 
         stage ('Pushear cambios Prod'){
-          when{
-                expression{ currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
-              }
           steps{
              sh "git config --global user.email joaquin.solari@sendati.com" 
              sh "git config --global user.name joaquin-solari"
