@@ -106,7 +106,7 @@ spec:
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Dev'"
              
-             sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
+             sh "git push  https://github.com/joaquin-solari/infra-repo"
              
           }
         }
@@ -132,7 +132,7 @@ spec:
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Stage'"
             
-             sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
+             sh "git push https://github.com/joaquin-solari/infra-repo"
              
           }
         }
@@ -158,7 +158,7 @@ spec:
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Prod'"
             
-             sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
+             sh "git push  https://github.com/joaquin-solari/infra-repo"
              
           }
         }
