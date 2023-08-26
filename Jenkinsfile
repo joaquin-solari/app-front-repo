@@ -95,19 +95,25 @@ spec:
             }
         } 
 
-        stage ('Pushear cambios Dev'){
-          steps{
-             sh "git config --global user.email joaquin.solari@sendati.com" 
-             sh "git config --global user.name joaquin-solari"
-
-             sh "git branch --set-upstream-to=origin/main main"
-             sh "git add ."
-             sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Dev'"
-             
-             sh "git push"
-             
-          }
+        stage('Pushear cambios Prod') {
+    steps {
+        script {
+            def commitMessage = "Actualización a ${BUILD_NUMBER} en Deployment en Prod"
+            
+            // Configurar el nombre y correo del usuario de Git
+            sh "git config --global user.email joaquin.solari@sendati.com"
+            sh "git config --global user.name joaquin-solari"
+            
+            // Agregar los cambios y hacer commit
+            sh "git add ."
+            sh "git commit -m '${commitMessage}'"
+            
+            // Empujar los cambios al repositorio remoto (público)
+            sh "git push origin main"
         }
+    }
+}
+
 
         stage ('Modificar Value Stage'){
          when{
