@@ -1,8 +1,7 @@
 pipeline {
 
     environment {
-         APP_NAME = "app-juaco"
-
+        APP_NAME = "app-juaco"
         USER_APP = "joaquinsolari"
         PASS = "docker1608"
         GIT_REPO_APP= "https://github.com/joaquin-solari/app-front-repo"
@@ -105,7 +104,7 @@ spec:
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Dev'"
              
-             sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
+             sh "git push"
              
           }
         }
@@ -131,7 +130,7 @@ spec:
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Stage'"
             
-             sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
+             sh "git push"
              
           }
         }
@@ -157,7 +156,7 @@ spec:
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Prod'"
             
-             sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
+             sh "git push"
              
           }
         }
