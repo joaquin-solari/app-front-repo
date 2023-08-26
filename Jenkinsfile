@@ -83,7 +83,7 @@ spec:
 
         stage('Clonar repo Infra') {
             steps {
-                git branch: 'main', changelog: false, poll: false, credentialsId: 'jenkins', url: "$GIT_REPO_INFRA"
+                git branch: 'main', changelog: false, poll: false, url: "$GIT_REPO_INFRA"
             }
         } 
         
@@ -104,10 +104,9 @@ spec:
              sh "git branch --set-upstream-to=origin/main main"
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Dev'"
-             withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) 
-             {
+             
              sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
-             } 
+             
           }
         }
 
@@ -131,10 +130,9 @@ spec:
              sh "git branch --set-upstream-to=origin/main main"
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Stage'"
-             withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) 
-             {
+            
              sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
-             } 
+             
           }
         }
 
@@ -158,10 +156,9 @@ spec:
              sh "git branch --set-upstream-to=origin/main main"
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Prod'"
-             withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) 
-             {
+            
              sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
-             } 
+             
           }
         }
 
