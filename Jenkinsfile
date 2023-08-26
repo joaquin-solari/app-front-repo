@@ -6,8 +6,6 @@ pipeline {
         PASS = "docker1608"
         GIT_REPO_APP= "https://github.com/joaquin-solari/app-front-repo"
         GIT_REPO_INFRA= "https://github.com/joaquin-solari/infra-repo"
-        GIT_USERNAME= "joaquin-solari"
-        GIT_PASSWORD= "riverplate8090100"
     }
 
     agent {
@@ -106,7 +104,7 @@ spec:
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Dev'"
              
-             sh "git push  https://github.com/joaquin-solari/infra-repo"
+             sh "git push"
              
           }
         }
@@ -132,7 +130,7 @@ spec:
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Stage'"
             
-             sh "git push https://github.com/joaquin-solari/infra-repo"
+             sh "git push"
              
           }
         }
@@ -158,7 +156,7 @@ spec:
              sh "git add ."
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Prod'"
             
-             sh "git push  https://github.com/joaquin-solari/infra-repo"
+             sh "git push"
              
           }
         }
