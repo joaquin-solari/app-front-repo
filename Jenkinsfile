@@ -151,7 +151,7 @@ spec:
         } 
 
         stage ('Pushear cambios Prod'){
-          steps{
+           steps{
              sh "git config --global user.email joaquin.solari@sendati.com" 
              sh "git config --global user.name joaquin-solari"
 
