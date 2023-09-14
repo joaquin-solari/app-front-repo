@@ -106,6 +106,7 @@ spec:
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Dev'"
              withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) 
              {
+             sh "git pull  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
              sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
              } 
           }
@@ -133,6 +134,7 @@ spec:
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Stage'"
              withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) 
              {
+             sh "git pull  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
              sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
              } 
           }
@@ -160,6 +162,7 @@ spec:
              sh "git commit -m 'Actualización a ${BUILD_NUMBER} en Deployment en Prod'"
              withCredentials([usernamePassword(credentialsId: 'jenkins', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) 
              {
+             sh "git pull  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
              sh "git push  https://$GIT_USERNAME:$GIT_PASSWORD@github.com/joaquin-solari/infra-repo.git"
              } 
           }
