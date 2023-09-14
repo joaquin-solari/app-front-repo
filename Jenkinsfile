@@ -25,7 +25,7 @@ spec:
     command:
     - sleep
     args:
-    - "200"
+    - "99"
     env:
     resources:
       limits: {}
