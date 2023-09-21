@@ -39,9 +39,27 @@ async function fetchVisitorCount() {
     document.getElementById(
       "visitorCount"
     ).textContent = `Visits: ${data.count}`;
-  } catch (error) {
+  } catch (error) { 
+    console.error("Error:", error);
+  }
+}
+
+async function fetchBanda() {
+  try {
+    const response = await fetch("/banda");
+    if (!response.ok) {
+      throw new Error("Request failed");
+    }
+    const data = await response.json();
+    console.log(data);
+
+    document.getElementById(
+      "Banda"
+    ).textContent = `Banda: ${data.banda}`;
+  } catch (error) { 
     console.error("Error:", error);
   }
 }
 
 fetchVisitorCount();
+fetchBanda();
